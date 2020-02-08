@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Composers
+{% endblock %}
+
+{% block main %}
+    <h2>Composers</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Composer</th>
+            <th class="text-center">Compositions</th>
+       </thead>
+        <tbody>
+            {% for composer in composers %}
+            <tr>
+                <td class="text-left">{{ composer.composer_name }}</td>
+                <td class="text-center">
+                    <a href="/composercompositions?id={{ composer.composer_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

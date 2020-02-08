@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Venues
+{% endblock %}
+
+{% block main %}
+    <h2>Venues already in the database</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Venue</th>
+            <th class="text-center">Concerts</th>
+            <th class="text-right">Edit/Delete</th>
+       </thead>
+        <tbody>
+            {% for venue in venues %}
+            <tr>
+                <td class="text-left">{{ venue.venue_name }}</td>
+                <td class="text-center">
+                    <a href="/venueconcerts?id={{ venue.venue_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+                <td class="text-right">
+                    <a href="/venueedit?id={{ venue.venue_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="/venuedelete?id={{ venue.venue_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <h2>Add new venue</h2>
+    <p>Check that the venue is not already in the list above.</p>
+    <p>Check spelling and capitalisation!</p>
+    <form action="/venueadd" method="post">
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="name" placeholder="Venue name" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add Venue</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit composition
+{% endblock %}
+
+{% block main %}
+    <h2>Update composition name</h2>
+    <p>Current name: <b>{{ composition_name }}</b></p>
+    <form action="/compositionedit" method="post">
+        <div class="form-group">
+            New name <input class="form-control" name="name" value="{{ composition_name }}" type="text">
+            <input name="id" value="{{ composition_id }}" type="hidden">
+        </div>
+        <button class="btn btn-primary" type="submit">Update Composition</button>
+    </form>
+
+{% endblock %}

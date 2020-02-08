@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Composition Performances
+{% endblock %}
+
+{% block main %}
+    <h2>Performances of {{ composition_name }} by {{ composer_name }}</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Date</th>
+            <th class="text-left">Name</th>
+            <th class="text-left">Venue</th>
+            <th class="text-center">Programme</th>
+       </thead>
+        <tbody>
+            {% for performance in performances %}
+            <tr>
+                <td class="text-left">{{ performance.concert_date }}</td>
+                <td class="text-left">{{ performance.concert_name }}</td>
+                <td class="text-left">{{ performance.venue_name }}</td>
+                <td class="text-center">
+                    <a href="/concertprogramme?id={{ performance.concert_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

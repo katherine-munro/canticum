@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit composer
+{% endblock %}
+
+{% block main %}
+    <h2>Update composer name</h2>
+    <p>Current name: <b>{{ composer_name }}</b></p>
+    <form action="/composeredit" method="post">
+        <div class="form-group">
+            New name <input class="form-control" name="name" value="{{ composer_name }}" type="text">
+            <input name="id" value="{{ composer_id }}" type="hidden">
+        </div>
+        <button class="btn btn-primary" type="submit">Update Composer</button>
+    </form>
+
+{% endblock %}

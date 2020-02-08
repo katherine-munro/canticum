@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Performances
+{% endblock %}
+
+{% block main %}
+    <h2>Add new performance</h2>
+    <p>Check that the performance is not already in the list below.</p>
+    <p>If the concert is not in the list below, <a href="/concerts">add the concert</a>.</p>
+    <p>If the composition is not in the list below, <a href="/compositions">add the composition</a>.</p>
+    <form action="/performanceadd" method="post">
+        <div class="form-group">
+            <select class="form-control" name="dateconcert" placeholder="Date and concert name">
+                {% for dateconcert in dateconcerts %}
+                    <option value="{{ dateconcert.concert_id }}">{{ dateconcert.concert_date }} - {{ dateconcert.concert_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="composercomposition" placeholder="Composer and composition">
+                {% for composercomposition in composercompositions %}
+                    <option value="{{ composercomposition.composition_id }}">{{ composercomposition.composer_name }} - {{ composercomposition.composition_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Performance</button>
+    </form>
+    <hr>
+    <h2>Performances already in the database</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Date</th>
+            <th class="text-left">Concert Name</th>
+            <th class="text-left">Composer</th>
+            <th class="text-left">Composition</th>
+            <th class="text-right">Delete</th>
+        </thead>
+        <tbody>
+            {% for performance in performances %}
+            <tr>
+                <td class="text-left">{{ performance.concert_date }}</td>
+                <td class="text-left">{{ performance.concert_name }}</td>
+                <td class="text-left">{{ performance.composer_name }}</td>
+                <td class="text-left">{{ performance.composition_name }}</td>
+                <td class="text-right">
+                    <a href="/performancedelete?id={{ performance.performance_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

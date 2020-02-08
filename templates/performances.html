@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Performances
+{% endblock %}
+
+{% block main %}
+    <h2>Performances</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Date</th>
+            <th class="text-left">Concert Name</th>
+            <th class="text-left">Composer</th>
+            <th class="text-left">Composition</th>
+        </thead>
+        <tbody>
+            {% for performance in performances %}
+            <tr>
+                <td class="text-left">{{ performance.concert_date }}</td>
+                <td class="text-left">{{ performance.concert_name }}</td>
+                <td class="text-left">{{ performance.composer_name }}</td>
+                <td class="text-left">{{ performance.composition_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

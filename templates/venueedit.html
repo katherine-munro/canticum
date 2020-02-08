@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit venue
+{% endblock %}
+
+{% block main %}
+    <h2>Update venue name</h2>
+    <p>Current name: <b>{{ venue_name }}</b></p>
+    <form action="/venueedit" method="post">
+        <div class="form-group">
+            New name <input class="form-control" name="name" value="{{ venue_name }}" type="text">
+            <input name="id" value="{{ venue_id }}" type="hidden">
+        </div>
+        <button class="btn btn-primary" type="submit">Update Venue</button>
+    </form>
+
+{% endblock %}

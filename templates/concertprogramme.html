@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Concert Programme
+{% endblock %}
+
+{% block main %}
+    <h2>{{ concert_name }} &ndash; {{ concert_date }} &ndash; {{ concert_venue }}</h2>
+    <p>Compositions are in alphabetical order by composer, not in concert order!</p>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Composer</th>
+            <th class="text-left">Composition</th>
+            <th class="text-center">Performances</th>
+       </thead>
+        <tbody>
+            {% for program in programme %}
+            <tr>
+                <td class="text-left">{{ program.composer_name }}</td>
+                <td class="text-left">{{ program.composition_name }}</td>
+                <td class="text-center">
+                    <a href="/compositionperformances?id={{ program.composition_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

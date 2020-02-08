@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Repertoire
+{% endblock %}
+
+{% block main %}
+    <h2>Latest performances of repertoire</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Composer</th>
+            <th class="text-left">Composition</th>
+            <th class="text-left">Latest Performance</th>
+        </thead>
+        <tbody>
+            {% for rep in reps %}
+            <tr>
+                <td class="text-left">{{ rep.composer_name }}</td>
+                <td class="text-left">{{ rep.composition_name }}</td>
+                <td class="text-left">{{ rep.latest_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

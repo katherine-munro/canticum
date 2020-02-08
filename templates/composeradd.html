@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Composers
+{% endblock %}
+
+{% block main %}
+    <h2>Composers already in the database</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Composer</th>
+            <th class="text-center">Compositions</th>
+            <th class="text-right">Edit/Delete</th>
+       </thead>
+        <tbody>
+            {% for composer in composers %}
+            <tr>
+                <td class="text-left">{{ composer.composer_name }}</td>
+                <td class="text-center">
+                    <a href="/composercompositions?id={{ composer.composer_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+                <td class="text-right">
+                    <a href="/composeredit?id={{ composer.composer_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="/composerdelete?id={{ composer.composer_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <h2>Add new composer</h2>
+    <p>Check that the composer is not already in the list above.</p>
+    <p>Use the format: <strong>Last name, Given names</strong></p>
+    <p>Check spelling and capitalisation!</p>
+    <form action="/composeradd" method="post">
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="name" placeholder="Last name, Given names" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add Composer</button>
+    </form>
+{% endblock %}

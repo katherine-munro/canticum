@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compositions
+{% endblock %}
+
+{% block main %}
+    <h2>Compositions</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Composer</th>
+            <th class="text-left">Composition</th>
+            <th class="text-center">Performances</th>
+       </thead>
+        <tbody>
+            {% for composition in compositions %}
+            <tr>
+                <td class="text-left">{{ composition.composer_name }}</td>
+                <td class="text-left">{{ composition.composition_name }}</td>
+                <td class="text-center">
+                    <a href="/compositionperformances?id={{ composition.composition_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

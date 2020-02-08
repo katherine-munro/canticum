@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compositions
+{% endblock %}
+
+{% block main %}
+    <h2>Compositions already in the database</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Composer</th>
+            <th class="text-left">Composition</th>
+            <th class="text-center">Performances</th>
+            <th class="text-right">Edit/Delete</th>
+       </thead>
+        <tbody>
+            {% for composition in compositions %}
+            <tr>
+                <td class="text-left">{{ composition.composer_name }}</td>
+                <td class="text-left">{{ composition.composition_name }}</td>
+                <td class="text-center">
+                    <a href="/compositionperformances?id={{ composition.composition_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+                <td class="text-right">
+                    <a href="/compositionedit?id={{ composition.composition_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="/compositiondelete?id={{ composition.composition_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <h2>Add new composition</h2>
+    <p>Check that the composition is not already in the list above.</p>
+    <p>If the composer is not in the list below, <a href="/composers">add the composer</a>.</p>
+    <p>Check spelling and capitalisation!</p>
+    <form action="/compositionadd" method="post">
+        <div class="form-group">
+            <select class="form-control" name="composer" placeholder="Composer">
+                {% for composer in composers %}
+                    <option value="{{ composer.composer_name }}">{{ composer.composer_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="name" placeholder="Name of composition" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add Composition</button>
+    </form>
+{% endblock %}

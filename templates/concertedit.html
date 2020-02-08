@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit concert
+{% endblock %}
+
+{% block main %}
+    <h2>Update concert date and name</h2>
+    <p>Current date: <b>{{ concert_date }}</b></p>
+    <p>Current name: <b>{{ concert_name }}</b></p>
+    <p>Current venue: <b>{{ venue_name }}</b></p>
+    <form action="/concertedit" method="post">
+        <div class="form-group">
+            New date <input class="form-control" name="date" type="date" value="{{ concert_date }}">
+        </div>
+        <div class="form-group">
+            New name <input class="form-control" name="name" value="{{ concert_name }}" type="text">
+            <input name="id" value="{{ concert_id }}" type="hidden">
+        </div>
+        <div class="form-group">
+            New venue <select class="form-control" name="venue" placeholder="Venue">
+                {% for venue in venues %}
+                    <option value="{{ venue.venue_name }}">{{ venue.venue_name }}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+        <button class="btn btn-primary" type="submit">Update Concert</button>
+    </form>
+{% endblock %}

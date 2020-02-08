@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Venue Concerts
+{% endblock %}
+
+{% block main %}
+    <h2>Concerts in {{ venue_name }}</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Date</th>
+            <th class="text-center">Concert</th>
+            <th class="text-center">Programme</th>
+       </thead>
+        <tbody>
+            {% for venueconcert in venueconcerts %}
+            <tr>
+                <td class="text-left">{{ venueconcert.concert_date }}</td>
+                <td class="text-left">{{ venueconcert.concert_name }}</td>
+                <td class="text-center">
+                    <a href="/concertprogramme?id={{ venueconcert.concert_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

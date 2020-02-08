@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Composer Compositions
+{% endblock %}
+
+{% block main %}
+    <h2>Compositions by {{ composer_name }}</h2>
+    <table class = "table table-sm">
+        <thead>
+            <th class="text-left">Composition</th>
+            <th class="text-center">Performances</th>
+       </thead>
+        <tbody>
+            {% for composerwork in composerworks %}
+            <tr>
+                <td class="text-left">{{ composerwork.composition_name }}</td>
+                <td class="text-center">
+                    <a href="/compositionperformances?id={{ composerwork.composition_id }}">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
